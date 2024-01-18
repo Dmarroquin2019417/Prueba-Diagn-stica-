@@ -1,79 +1,199 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-        <style>
-            * {
-                font-family: Arial, Helvetica, sans-serif;
-            }
-            #teclado {
-                width:590px;
-                background-color: #aaa;
-                overflow: hidden;
-            }
-            #letras>span {
-                padding:10px;
-                width: 55px;
-                text-align: center;
-                margin:2px;
-                float:left;
-                cursor:pointer;
-                border-radius: 3px;
-                background-color:white;
-                box-sizing: border-box;
-            }
-            #letras>span.space {
-                width: calc( 100% - 4px);
-            }
-            #letras>span.space::after {
-                content:"espacio";
-            }
-            #disposicionTeclado {
-                clear: both;
-            }
-            #disposicionTeclado>span {
-                color:gray;
-                cursor:pointer;
-            }
-            #disposicionTeclado .selected {
-                font-weight: Bold;
-                color:black;
-                cursor:inherit;
-            }
-            input {
-                margin:20px 0;
-            }
-        </style>
-    </head>
- 
-    <body>
- 
-        <input type="text" id="texto">
- 
-        <div id="teclado">
-            <div id="letras"></div>
-        </div>
-        <div id="disposicionTeclado"><span class="selected"></span> <span></span></div>
- 
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #teclado {
+            width: 590px;
+            background-color: #aaa;
+            overflow: hidden;
+        }
+
+        #letras>span {
+            padding: 10px;
+            width: 55px;
+            text-align: center;
+            margin: 2px;
+            float: left;
+            cursor: pointer;
+            border-radius: 3px;
+            background-color: white;
+            box-sizing: border-box;
+        }
+
+        #letras>span.space {
+            width: calc(100% - 4px);
+        }
+
+        #letras>span.space::after {
+            content: "espacio";
+        }
+
+        #disposicionTeclado {
+            clear: both;
+        }
+
+        #disposicionTeclado>span {
+            color: gray;
+            cursor: pointer;
+        }
+
+        #disposicionTeclado .selected {
+            font-weight: Bold;
+            color: black;
+            cursor: inherit;
+        }
+
+        input {
+            margin: 20px 0;
+        }
+
+
+
+
+
+        body {
+
+            background-image: url();
+
+            width: 500px;
+
+            padding: 6%;
+
+            margin: 0 auto;
+f
+        }
+
+        canvas {
+
+            background-image: url();
+
+            width: 400px;
+
+            height: 200px;
+
+        }
+
+        input {
+
+            font-size: 1.3em;
+
+            text-align: center;
+
+            border: 2px solid orange;
+
+        }
+
+        h1 {
+
+            background: linear-gradient(yellow, red);
+
+            -webkit-background-clip: text;
+
+            color: transparent;
+
+            text-align: center;
+
+            font-size: 3.5em;
+
+            text-shadow: 0 0 30px #fff;
+
+        }
+
+        #comenzar {
+
+            font-size: 1.5em;
+
+            color: yellow;
+
+            text-shadow: 0 0 10px black;
+
+        }
+
+        #veri {
+
+            font-size: 1em;
+
+            border: 2px solid orange;
+
+            border-radius: 4px;
+
+            box-shadow: 0 0 20px #4f9;
+
+        }
+
+        button {
+
+            box-shadow: 0 0 20px orange;
+
+        }
+
+        #gana {
+
+            text-shadow: 5px 5px 8px red;
+
+            cursor: default;
+
+            position: absolute;
+
+            top: -40px;
+
+            left: 0;
+
+            right: 0;
+
+            bottom: 0;
+
+            height: 100px;
+
+            -webkit-animation: bounce .4s ease infinite alternate;
+
+            font-size: 30px;
+
+            color: yellow;
+
+            text-align: center;
+
+            line-height: 100px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="text" id="texto">
+
+    <div id="teclado">
+        <div id="letras"></div>
+    </div>
+    <div id="disposicionTeclado"><span class="selected"></span> <span></span></div>
+
+</body>
+
 </html>
- 
+
 <script>
     const abecedario = "abcdefghijklmnñopqrstuvwxyzç., ";
     const querty = "qwertyuiopasdfghjklñzxcvbnmç., ";
-     
-    const idLetras=document.getElementById("letras");
-    const idDisposicionTeclado=document.getElementById("disposicionTeclado");
-     
+
+    const idLetras = document.getElementById("letras");
+    const idDisposicionTeclado = document.getElementById("disposicionTeclado");
+
     // funcion para mostrar las letras
     // tiene que recibir el listado de letras a mostrar
     const mostrarLetras = listadoLetras => {
-        idLetras.innerHTML="";
+        idLetras.innerHTML = "";
         // añadimos las letras
         listadoLetras.split('').map(el => {
-            let span=document.createElement("span");
+            let span = document.createElement("span");
             span.addEventListener("click", teclaPulsada);
-            span.innerText=el;
-            if (el==" ") {
+            span.innerText = el;
+            if (el == " ") {
                 span.classList.add("space");
             }
             idLetras.appendChild(span);
@@ -81,22 +201,14 @@
     }
     // por defecto indicamos que muestre el teclado querty
     mostrarLetras(querty);
-     
+
     // función que recibe la pulsación de la tecla
     // tanto del teclado fisico como del teclado dibujado en la pantalla
     function teclaPulsada(e) {
-        const tecla=this.classList && this.classList.contains("space") ? " " : this.innerText;
-        if (abecedario.indexOf(tecla)>=0) {
-            document.getElementById("texto").value+=tecla;
+        const tecla = this.classList && this.classList.contains("space") ? " " : this.innerText;
+        if (abecedario.indexOf(tecla) >= 0) {
+            document.getElementById("texto").value += tecla;
         }
     }
-     
-    // creamos un evento por si el usuario quiere cambiar el estilo del teclado
-    // entre querty o abecedario
-    Array.from(idDisposicionTeclado.querySelectorAll("span")).map(el => el.addEventListener("click", function() {
-        // añadimos el estilo .selected al elemento seleccionado
-        Array.from(idDisposicionTeclado.querySelectorAll("span")).map(el => el == this ? this.classList.add("selected") : el.classList.remove("selected"));
-        mostrarLetras(eval(this.innerText.toLowerCase()));
-    }));
-     
-    </script>
+
+</script>
