@@ -1,0 +1,62 @@
+body {
+    font-family: Comic Sans MS, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgb(151, 151, 177) 33%, rgb(156, 124, 83) 48%, rgba(69, 135, 255, 1) 54%, rgba(60, 145, 255, 1) 60%, rgba(14, 132, 156, 1) 100%);
+}
+ 
+.calculadora{
+    text-align: center;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1);
+    background: rgb(93, 99, 87);
+}
+ 
+input{
+    padding: 10px;
+    margin-bottom: 30px;
+    grid-gap: 10px;
+}
+ 
+button{
+    padding: 15px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+ 
+button:hover{
+    background-color: rgb(123, 140, 172);
+}
+ 
+.botones{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+
+h1{
+    margin-top: -350px;
+    position: absolute;
+    color: white;
+}
+ 
+.pie{
+    margin-top: 45%;
+    position: absolute;
+    background-color: white;
+    height: 105px;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+ 
+footer{
+    background-color: white;
+    font-size: 30px;
+    margin-top: 35px;
+}
